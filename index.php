@@ -125,14 +125,21 @@ $rows = [
 <form name="math-test" action="scripts/check.php" method="post" class="m-5">
     <div class="operations container">
         <?php foreach ($rows as $key => $value): ?>
+            <?php
+            $firstNumber = $value['first_number'];
+            $secondNumber = $value['second_number'];
+            $operation = $value['operation'];
+            ?>
             <div class="row mb-3">
                 <div class="col-lg-2 col-5">
-                    <?php echo $value['first_number'] . ' ' . $value['operation'] . ' ' .$value['second_number'] ?>
+                    <?php echo $firstNumber . ' ' . $operation . ' ' . $secondNumber ?>
                 </div>
                 <div class="col-lg-1 col-3">=</div>
                 <div class="col-lg-2 col-4">
                     <input type="number" step="0.01" class="answer form-control" name="answer_<?php echo $key ?>" required>
-                    <input type="hidden" name="hidden_answer_<?php echo $key ?>" value="<?php echo $value['result'] ?>">
+                    <input type="hidden" name="hidden_first_number_<?php echo $key ?>" value="<?php echo $firstNumber ?>">
+                    <input type="hidden" name="hidden_second_number_<?php echo $key ?>" value="<?php echo $secondNumber ?>">
+                    <input type="hidden" name="hidden_operation_<?php echo $key ?>" value="<?php echo $operation ?>">
                 </div>
             </div>
         <?php endforeach; ?>
